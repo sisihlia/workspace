@@ -1,0 +1,320 @@
+02/06/2015 04:42:00.369[ScriptPack.Section.findSection]
+[INFO]findSection OK
+02/06/2015 04:42:00.376[ScriptPack.Section.convertStringToTestCase]
+[INFO]convertStringToTestCase OK
+02/06/2015 04:42:00.377[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution starts for iteration 1
+02/06/2015 04:42:00.378[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 1
+02/06/2015 04:42:00.379[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:00.380[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:00.381[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:01.926[ScriptPack.Execution.executeTestCase]
+[INFO]**********EasyTest Test Report**********
+02/06/2015 04:42:01.928[ScriptPack.Execution.executeTestCase]
+[INFO]Test Case: testCase/test1.tc
+02/06/2015 04:42:01.931[ScriptPack.Execution.executeTestCase]
+[INFO]Result  : PASSED
+02/06/2015 04:42:01.932[ScriptPack.Execution.executeTestCase]
+[INFO]Start at: 2015-06-02-T16:42:00.618
+02/06/2015 04:42:01.933[ScriptPack.Execution.executeTestCase]
+[INFO]End   at: 2015-06-02-T16:42:01.926
+02/06/2015 04:42:01.934[ScriptPack.Execution.executeTestCase]
+[INFO]****************************************
+02/06/2015 04:42:01.945[ScriptPack.Execution.executeTestCase]
+[INFO]exit value 0
+02/06/2015 04:42:01.946[ScriptPack.TestCase.settIterationNumber]
+[INFO]settIterationNumber OK
+02/06/2015 04:42:01.946[ScriptPack.TestCase.setIsPassed]
+[INFO]setIsPassed OK
+02/06/2015 04:42:01.947[ScriptPack.Execution.executeTestCase]
+[INFO]TC is passed
+02/06/2015 04:42:01.948[ScriptPack.Execution.executeTestCase]
+[INFO]executeTestCase OK
+02/06/2015 04:42:01.948[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:01.949[ScriptPack.Execution.executeTestCaseList]
+[INFO]Iteration number : 1
+02/06/2015 04:42:01.950[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 2
+02/06/2015 04:42:01.950[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:01.951[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:01.953[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:02.387[ScriptPack.Execution.executeTestCase]
+[INFO]**********EasyTest Test Report**********
+02/06/2015 04:42:02.388[ScriptPack.Execution.executeTestCase]
+[INFO]Test Case: testCase/test2.tc
+02/06/2015 04:42:02.389[ScriptPack.Execution.executeTestCase]
+[INFO]Result  : PASSED
+02/06/2015 04:42:02.390[ScriptPack.Execution.executeTestCase]
+[INFO]Start at: 2015-06-02-T16:42:02.083
+02/06/2015 04:42:02.390[ScriptPack.Execution.executeTestCase]
+[INFO]End   at: 2015-06-02-T16:42:02.386
+02/06/2015 04:42:02.391[ScriptPack.Execution.executeTestCase]
+[INFO]****************************************
+02/06/2015 04:42:02.397[ScriptPack.Execution.executeTestCase]
+[INFO]exit value 0
+02/06/2015 04:42:02.398[ScriptPack.TestCase.settIterationNumber]
+[INFO]settIterationNumber OK
+02/06/2015 04:42:02.399[ScriptPack.TestCase.setIsPassed]
+[INFO]setIsPassed OK
+02/06/2015 04:42:02.399[ScriptPack.Execution.executeTestCase]
+[INFO]TC is passed
+02/06/2015 04:42:02.400[ScriptPack.Execution.executeTestCase]
+[INFO]executeTestCase OK
+02/06/2015 04:42:02.401[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:02.402[ScriptPack.Execution.executeTestCaseList]
+[INFO]Iteration number : 1
+02/06/2015 04:42:02.403[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 3
+02/06/2015 04:42:02.404[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:02.405[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:02.406[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:02.448[ScriptPack.Execution.executeTestCase]
+[INFO]Error:"C:/LTE/CI/workspace/tc/testCase/test20.tc" doesn't exist, please check!
+02/06/2015 04:42:02.451[ScriptPack.Execution.executeTestCase]
+[INFO]exit value -1
+02/06/2015 04:42:02.453[ScriptPack.TestCase.settIterationNumber]
+[INFO]settIterationNumber OK
+02/06/2015 04:42:02.454[ScriptPack.TestCase.setCrached]
+[INFO]setCrached OK
+02/06/2015 04:42:02.454[ScriptPack.Execution.executeTestCase]
+[INFO]executeTestCase OK
+02/06/2015 04:42:02.455[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:02.456[ScriptPack.Execution.executeTestCaseList]
+[INFO]Iteration number : 1
+02/06/2015 04:42:02.456[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 4
+02/06/2015 04:42:02.457[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:02.458[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:02.459[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:02.892[ScriptPack.Execution.executeTestCase]
+[INFO]Error. 
+02/06/2015 04:42:02.894[ScriptPack.Execution.executeTestCase]
+[INFO]**********EasyTest Test Report**********
+02/06/2015 04:42:02.895[ScriptPack.Execution.executeTestCase]
+[INFO]Test Case: testCase/test4.tc
+02/06/2015 04:42:02.896[ScriptPack.Execution.executeTestCase]
+[INFO]Result  : FAILED
+02/06/2015 04:42:02.897[ScriptPack.Execution.executeTestCase]
+[INFO]Start at: 2015-06-02-T16:42:02.596
+02/06/2015 04:42:02.897[ScriptPack.Execution.executeTestCase]
+[INFO]End   at: 2015-06-02-T16:42:02.893
+02/06/2015 04:42:02.898[ScriptPack.Execution.executeTestCase]
+[INFO]****************************************
+02/06/2015 04:42:02.905[ScriptPack.Execution.executeTestCase]
+[INFO]exit value -1
+02/06/2015 04:42:02.906[ScriptPack.TestCase.settIterationNumber]
+[INFO]settIterationNumber OK
+02/06/2015 04:42:02.907[ScriptPack.TestCase.setIsNotPassed]
+[INFO]setIsNotPassed OK
+02/06/2015 04:42:02.907[ScriptPack.Execution.executeTestCase]
+[INFO]executeTestCase OK
+02/06/2015 04:42:02.908[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:02.909[ScriptPack.Execution.executeTestCaseList]
+[INFO]Iteration number : 1
+02/06/2015 04:42:02.909[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 5
+02/06/2015 04:42:02.910[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:02.910[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:02.911[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.218[ScriptPack.Execution.executeTestCase]
+[INFO]**********EasyTest Test Report**********
+02/06/2015 04:42:05.225[ScriptPack.Execution.executeTestCase]
+[INFO]Test Case: testCase/testCrashed.tc
+02/06/2015 04:42:05.225[ScriptPack.Execution.executeTestCase]
+[INFO]Result  : FAILED
+02/06/2015 04:42:05.226[ScriptPack.Execution.executeTestCase]
+[INFO]Start at: 2015-06-02-T16:42:03.041
+02/06/2015 04:42:05.228[ScriptPack.Execution.executeTestCase]
+[INFO]End   at: 2015-06-02-T16:42:05.124
+02/06/2015 04:42:05.229[ScriptPack.Execution.executeTestCase]
+[INFO]****************************************
+02/06/2015 04:42:05.234[ScriptPack.Execution.executeTestCase]
+[INFO]exit value -1073741819
+02/06/2015 04:42:05.235[ScriptPack.TestCase.settIterationNumber]
+[INFO]settIterationNumber OK
+02/06/2015 04:42:05.236[ScriptPack.TestCase.setCrached]
+[INFO]setCrached OK
+02/06/2015 04:42:05.237[ScriptPack.Execution.executeTestCase]
+[INFO]executeTestCase OK
+02/06/2015 04:42:05.238[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.238[ScriptPack.Execution.executeTestCaseList]
+[INFO]Iteration number : 1
+02/06/2015 04:42:05.239[ScriptPack.Execution.executeTestCaseList]
+[INFO]verify status ALL TC
+02/06/2015 04:42:05.239[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.240[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.241[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.241[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.242[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.243[ScriptPack.TestCaseList.verifyList]
+[INFO]verifyList NOK
+02/06/2015 04:42:05.243[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution ends for iteration 1
+02/06/2015 04:42:05.244[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution starts for iteration 2
+02/06/2015 04:42:05.245[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 1
+02/06/2015 04:42:05.245[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.248[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 2
+02/06/2015 04:42:05.248[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.249[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 3
+02/06/2015 04:42:05.249[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.250[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.251[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 4
+02/06/2015 04:42:05.251[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.252[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.252[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.690[ScriptPack.Execution.executeTestCase]
+[INFO]Error. 
+02/06/2015 04:42:05.692[ScriptPack.Execution.executeTestCase]
+[INFO]**********EasyTest Test Report**********
+02/06/2015 04:42:05.693[ScriptPack.Execution.executeTestCase]
+[INFO]Test Case: testCase/test4.tc
+02/06/2015 04:42:05.693[ScriptPack.Execution.executeTestCase]
+[INFO]Result  : FAILED
+02/06/2015 04:42:05.693[ScriptPack.Execution.executeTestCase]
+[INFO]Start at: 2015-06-02-T16:42:05.391
+02/06/2015 04:42:05.693[ScriptPack.Execution.executeTestCase]
+[INFO]End   at: 2015-06-02-T16:42:05.691
+02/06/2015 04:42:05.694[ScriptPack.Execution.executeTestCase]
+[INFO]****************************************
+02/06/2015 04:42:05.704[ScriptPack.Execution.executeTestCase]
+[INFO]exit value -1
+02/06/2015 04:42:05.704[ScriptPack.TestCase.settIterationNumber]
+[INFO]settIterationNumber OK
+02/06/2015 04:42:05.707[ScriptPack.TestCase.setIsNotPassed]
+[INFO]setIsNotPassed OK
+02/06/2015 04:42:05.707[ScriptPack.Execution.executeTestCase]
+[INFO]executeTestCase OK
+02/06/2015 04:42:05.708[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.708[ScriptPack.Execution.executeTestCaseList]
+[INFO]Iteration number : 2
+02/06/2015 04:42:05.709[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution for TC 5
+02/06/2015 04:42:05.709[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.710[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.710[ScriptPack.Execution.executeTestCaseList]
+[INFO]verify status ALL TC
+02/06/2015 04:42:05.710[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.710[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.711[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.711[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.711[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.711[ScriptPack.TestCaseList.verifyList]
+[INFO]verifyList NOK
+02/06/2015 04:42:05.712[ScriptPack.Execution.executeTestCaseList]
+[INFO]TC Execution ends for iteration 2
+02/06/2015 04:42:05.712[ScriptPack.Execution.executeTestCaseList]
+[INFO]Execution for all iteration ends
+02/06/2015 04:42:05.712[ScriptPack.Execution.executeTestCaseList]
+[INFO]executeTestCaseList OK
+02/06/2015 04:42:05.713[ScriptPack.Execution.getTCAttribute]
+[INFO]getTCAttribute starts
+02/06/2015 04:42:05.714[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.714[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.714[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.715[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.715[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.715[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.715[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.716[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.716[ScriptPack.TestCase.getIsPassed]
+[INFO]getIsPassed OK
+02/06/2015 04:42:05.716[ScriptPack.TestCase.getIterationNumber]
+[INFO]getIterationNumber OK
+02/06/2015 04:42:05.716[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.717[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.717[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.718[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.718[ScriptPack.TestCase.getName]
+[INFO]getName OK
+02/06/2015 04:42:05.718[ScriptPack.Execution.getTCAttribute]
+[INFO]getTCAttribute OK
+02/06/2015 04:42:05.719[ScriptPack.TestCaseList.getTCPassed]
+[INFO]getTCPassed OK
+02/06/2015 04:42:05.719[ScriptPack.TestCaseList.getTCFailed]
+[INFO]getTCFailed OK
+02/06/2015 04:42:05.719[ScriptPack.TestCaseList.getTCCrashed]
+[INFO]getTCCrashed OK
+02/06/2015 04:42:05.732[ScriptPack.PropertiesFile.setConfigProperties]
+[INFO]setConfigProperties OK
+02/06/2015 04:42:05.786[ScriptPack.Chart.generateHistory]
+[INFO]generateHistory OK
+02/06/2015 04:42:05.787[ScriptPack.TestCaseList.getTCPassed]
+[INFO]getTCPassed OK
+02/06/2015 04:42:05.787[ScriptPack.TestCaseList.getTCFailed]
+[INFO]getTCFailed OK
+02/06/2015 04:42:05.787[ScriptPack.TestCaseList.getTCCrashed]
+[INFO]getTCCrashed OK
+02/06/2015 04:42:05.787[ScriptPack.Execution.getNameList]
+[INFO]getNameList OK
+02/06/2015 04:42:05.788[ScriptPack.Execution.getPassedList]
+[INFO]getPassedList OK
+02/06/2015 04:42:05.788[ScriptPack.Execution.getItList]
+[INFO]getItList OK
+02/06/2015 04:42:05.859[ScriptPack.Chart.<init>]
+[INFO]<init> OK
+02/06/2015 04:42:05.865[ScriptPack.Chart.getURL]
+[INFO]getURL OK
+02/06/2015 04:42:05.868[ScriptPack.Chart.getURL]
+[INFO]getURL OK
+02/06/2015 04:42:05.872[ScriptPack.Chart.getURL]
+[INFO]getURL OK
+02/06/2015 04:42:05.979[ScriptPack.Chart.generateChartAndTableTemplate]
+[INFO]generateChartAndTableTemplate OK

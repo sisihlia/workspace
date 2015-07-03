@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_40"/>
+	<classpathentry kind="lib" path="JAR/commons-configuration-1.10.jar"/>
+	<classpathentry kind="lib" path="JAR/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="JAR/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="JAR/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="JAR/freemarker.jar"/>
+	<classpathentry kind="lib" path="JAR/ini4j-0.5.4.jar"/>
+	<classpathentry kind="lib" path="JAR/jcommander-1.30.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
