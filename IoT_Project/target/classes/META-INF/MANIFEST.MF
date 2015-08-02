@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1417193985734
+Build-Jdk: 1.7.0_65
+Built-By: sisily
+Bundle-Description: Java socket abstraction for UDP, DTLS, TCP, etc.
+Bundle-DocURL: http://www.eclipse.org/
+Bundle-License: http://www.eclipse.org/org/documents/epl-v10.php, http:/
+ /www.eclipse.org/org/documents/edl-v10.php
+Bundle-ManifestVersion: 2
+Bundle-Name: element-connector
+Bundle-SymbolicName: element-connector
+Bundle-Vendor: Eclipse Foundation
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.eclipse.californium.elements;version="1.0.0.SNAPSHOT
+ "
+Tool: Bnd-1.50.0
