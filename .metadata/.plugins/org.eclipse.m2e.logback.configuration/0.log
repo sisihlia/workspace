@@ -1,0 +1,14 @@
+2014-12-02 14:46:21,477 [Worker-8] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2014-12-02 14:46:23,165 [New I/O client worker #1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.eclipse.org/content/repositories/californium/junit/junit/4.8.1/junit-4.8.1.pom
+2014-12-02 14:46:23,182 [Worker-8] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2014-12-02 14:46:23,407 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/junit/junit/4.8.1/junit-4.8.1.pom
+2014-12-02 14:46:23,410 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/junit/junit/4.8.1/junit-4.8.1.pom
+2014-12-02 14:46:23,695 [Worker-8] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2014-12-02 14:46:24,858 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.eclipse.org/content/repositories/californium/junit/junit/4.8.1/junit-4.8.1.jar
+2014-12-02 14:46:24,862 [Worker-8] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2014-12-02 14:46:24,919 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/junit/junit/4.8.1/junit-4.8.1.jar
+2014-12-02 14:46:25,576 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/junit/junit/4.8.1/junit-4.8.1.jar
+2014-12-02 14:46:30,215 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2014-12-02 14:51:38,078 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2014-12-02 14:51:57,622 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate - /home/sisily/californium/californium
+2014-12-02 14:51:57,622 [Worker-6] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B install

@@ -1,0 +1,38 @@
+package test;
+import com.mongodb.BasicDBObject;
+import com.mongodb.BulkWriteOperation;
+import com.mongodb.BulkWriteResult;
+import com.mongodb.Cursor;
+import com.mongodb.DB;
+import com.mongodb.Mongo;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.ParallelScanOptions;
+
+import java.util.List;
+import java.util.Set;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
+public class mongodb {
+	MongoClient mongoClient = new MongoClient();
+	// or
+	MongoClient mongoClient2 = new MongoClient( "localhost" );
+	// or
+	MongoClient mongoClient3 = new MongoClient( "localhost" , 27017 );
+	// or, to connect to a replica set, with auto-discovery of the primary, supply a seed list of members
+	MongoClient mongoClient4 = new MongoClient(Arrays.asList(new ServerAddress("localhost", 27017),
+	                                      new ServerAddress("localhost", 27018),
+	                                      new ServerAddress("localhost", 27019)));
+
+	DB db = mongoClient.getDB( "mydb" );
+
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
