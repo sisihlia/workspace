@@ -4,7 +4,8 @@ The code returns fitness value and time duration from MainActivity.java
 Enviroment :
  -Java 8
  -Android Studio 3.0.1
- -Emulator : Nexus_5_API_23:5554
+ -Emulator (Nexus_5_API_23:5554)
+ -Ubuntu 16.04
 
 Heuristic Search :
  -Manhattan
