@@ -1,6 +1,10 @@
 The code is tested on Puzzle 8. But the implementation can be done either for 8 tiles or 15 tiles.
 The code returns fitness value and time duration from MainActivity.java
 
+Current usage :
+	Before solve, please shuffle the tiles (still under development).
+	Please select the approach from MainActivity.java.
+
 Enviroment :
  -Java 8
  -Android Studio 3.0.1
