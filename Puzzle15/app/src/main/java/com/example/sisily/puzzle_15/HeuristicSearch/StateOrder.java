@@ -1,4 +1,4 @@
-package com.example.sisily.puzzle_15;
+package com.example.sisily.puzzle_15.HeuristicSearch;
 
 /**
  * Created by sisily on 04/02/18.

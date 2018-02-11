@@ -1,27 +1,27 @@
-package com.example.sisily.puzzle_15;
+package com.example.sisily.puzzle_15.HeuristicSearch;
 
 /**
  * Created by sisily on 04/02/18.
  */
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
 
-public class Manhattan {
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+public class BreadthFS {
         /*
-         Breadth first search algorithm with manhattan heuristic
-         * declare priorityQueue
-         * add root node to our priorityQueue
-         * while priorityQueue not empty do following loops:
+         Breadth first search algorithm
+         * declare openlist
+         * add root node to our openlist
+         * while openlist not empty do following loops:
          * a. retrieve then remove first node of our openlist
          * b. check status of retrieved node
          *      if it is the goal node then break loop and print solution
          *      if it is not goal node then:
          *      - expand retrieved node
-         *      - evaluate using manhattan heuristik
-         *      - add to priorityQueue
+         *      - ADD expanded node at THE END of our openlist
          *      - continue loop
          */
 
@@ -42,8 +42,8 @@ public class Manhattan {
     String str = ""; // initial state
     String goal = ""; //goal state
 
-
-    PriorityQueue <StateOrder> queue;
+    // openlist
+    LinkedList <String> openList;
 
 
     Map<String,Integer> levelDepth;
@@ -52,31 +52,28 @@ public class Manhattan {
     Map<String,String> stateHistory;
 
     int nodes = 0; //counter for node generation
-    int limit = 100; //counter for limit
-    int unique = -1;//counter for uniq state
-    int newValue; //counter depth limit
-    int a; //position of blank
-    int h; //heuristic
+    int limit = 150; //counter for limit
+    int unique = -1;
+    int newValue;//counter for level depth
+    int a;
 
     String currState;
-    boolean solution = false;
+    boolean solution = false;//flag if solution exist or not
 
-
-    Manhattan(String str, String goal){
-        queue = new PriorityQueue <StateOrder> ();
+    public BreadthFS(String str,String goal){
+        openList = new LinkedList <String> ();
         levelDepth = new HashMap<String, Integer>();
         stateHistory = new HashMap<String,String>();
         this.str = str;
         this.goal = goal;
-        addToQueue(str,null);
+        addToOpenList(str,null);//add root
     }
 
-    void findSolution (){
+    public String findSolution (){
 
-        while (!queue.isEmpty()){
+        while (!openList.isEmpty()){
 
-
-            currState = queue.poll().toString();//RETRIEVE then remove first node
+            currState = openList.removeFirst();//RETRIEVE then remove first node of our openlist
 
             if (currState.equals(goal)){ // check if current state is goal state
                 solution = true;
@@ -100,7 +97,7 @@ public class Manhattan {
                 //left
                 while (a != 0 && a != 3 && a != 6){// if blank not in the left most column then it able move left
                     String nextState = currState.substring(0,a-1)+"0"+currState.charAt(a-1)+currState.substring(a+1);//swap blank with destination
-                    addToQueue(nextState, currState);//add expanded node to openlist
+                    addToOpenList(nextState, currState);//add expanded node to openlist
                     nodes++;
                     break;
                 }
@@ -108,7 +105,7 @@ public class Manhattan {
                 //up
                 while (a!=0 && a!=1 && a!=2){//if blank not in the very top of row then it able to move up
                     String nextState = currState.substring(0,a-3)+"0"+currState.substring(a-2,a)+currState.charAt(a-3)+currState.substring(a+1);//swap blank with destination
-                    addToQueue(nextState, currState);//add expanded node to openlist
+                    addToOpenList(nextState, currState);//add expanded node to openlist
                     nodes++; //nodes = nodes + 1; a node is being genereted add it to counter
                     break;
                 }
@@ -116,7 +113,7 @@ public class Manhattan {
                 //right
                 while(a != 2 && a != 5 && a != 8){// if blank not in the right most column then it able to move right
                     String nextState = currState.substring(0,a)+currState.charAt(a+1)+"0"+currState.substring(a+2);//swap blank with destination
-                    addToQueue(nextState, currState);//add expanded node to openlist
+                    addToOpenList(nextState, currState);//add expanded node to openlist
                     nodes++;
                     break;
                 }
@@ -124,7 +121,7 @@ public class Manhattan {
                 //down
                 while (a != 6 && a != 7 && a != 8) {// if blank not in the very bottom row then it able to move down
                     String nextState = currState.substring(0,a)+currState.substring(a+3,a+4)+currState.substring(a+1,a+3)+"0"+currState.substring(a+4);//swap blank with destination
-                    addToQueue(nextState, currState);//add expanded node to openlist
+                    addToOpenList(nextState, currState);//add expanded node to openlist
                     nodes++;
                     break;
                 }
@@ -136,62 +133,35 @@ public class Manhattan {
         if (solution){
             System.out.println("Solution Exist");
         }
-
-        else {
+        else{
             System.out.println("Solution not yet found! My suggestion are:");
             System.out.println("1. Try to increse level depth limit ");
-            System.out.println("2. Use other heuristc ");
-            System.out.println("3. Maybe it is physically impossible");
+            System.out.println("2. Maybe it is physically impossible");
         }
-
+        return currState;
 
     }
 
-    private void addToQueue (String newState, String oldState){
+    public void addToOpenList (String newState, String oldState){
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
             unique ++;
             levelDepth.put(newState, newValue);
-            h = calcManhattan(newState,goal); // calculate heuristic from newstate
-            //h= 0;
-            queue.add(new StateOrder(h,newState));//add to priority queue
+            openList.add(newState);//add node at THE END of openlist (breadthFS Algorithm)
             stateHistory.put(newState, oldState);
         }
 
     }
 
-    int calcManhattan(String currState, String goalState){
-        //lookup table for manhattan distance
-        int [][] manValue = {
-                {0,1,2,1,2,3,2,3,4},
-                {1,0,1,2,1,2,3,2,3},
-                {2,1,0,3,2,1,4,3,2},
-                {1,2,3,0,1,2,1,2,3},
-                {2,1,2,1,0,1,2,1,2},
-                {3,2,1,2,1,0,3,2,1},
-                {2,3,4,1,2,3,0,1,2},
-                {3,2,3,2,1,2,1,0,1},
-                {4,3,2,3,2,1,2,1,0},
-        };
-        //calculate manhattan distance
-        int heu = 0 ;
-        int result = 0;
-        //String a = null;
-        for (int i=1; i<9;i++){
-            heu = manValue[currState.indexOf(String.valueOf(i))][goalState.indexOf(String.valueOf(i))];
-            result = result + heu;
-
-        }
-        return result;
-    }
-
-    void printSolution (String currState){
+    public void printSolution (String currState){
         if (solution){
             System.out.println("Solution found in " +levelDepth.get(currState)+" step(s)");
             System.out.println("Node generated: "+ nodes);
             System.out.println("Unique Node generated: "+ unique);
+            System.out.println("Solution found is " +currState + " in " + levelDepth.get(currState)+" step(s)");
         }
-        else {
+        else{
+            System.out.println("Solution unsolved is " +currState+ " in " + levelDepth.get(currState)+" step(s)");
             System.out.println("Solution not found!");
             System.out.println("Depth Limit Reached!");
             System.out.println("Node generated: "+ nodes);
@@ -212,17 +182,7 @@ public class Manhattan {
         }
         //System.exit(0); //break
     }
-
-    public static void main(String[] args) {
-
-        String str ="";
-        String goal = "123456780";
-        System.out.println("Manhattan");
-        Manhattan man = new Manhattan (str,goal);
-        man.findSolution();
-        System.out.println("****************");
-
-
-    }
-
 }
+
+
+

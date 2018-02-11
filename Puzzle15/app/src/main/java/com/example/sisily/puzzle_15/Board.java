@@ -1,14 +1,13 @@
 package com.example.sisily.puzzle_15;
 
+import com.example.sisily.puzzle_15.HeuristicSearch.BreadthFS;
+import com.example.sisily.puzzle_15.HeuristicSearch.Manhattan;
+import com.example.sisily.puzzle_15.HeuristicSearch.Mismatch;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.LinkedList;
 
 /**
  * Created by sisily on 01/02/18.
@@ -16,6 +15,9 @@ import java.util.LinkedList;
 
 public class Board {
 
+    /**
+     *
+     */
     private final int size =3 ;
 
     /** Number of tile moves made so far. */
@@ -27,6 +29,7 @@ public class Board {
     /** Listeners listening to board changes such as sliding of tiles. */
     private final List<BoardChangeListener> listeners;
     private String str;
+    private String goal = "123456780";
 
     /** To arrange tiles randomly. */
     private final static Random random = new Random();
@@ -50,6 +53,9 @@ public class Board {
     }
 
 
+    /**
+     * @return
+     */
     public String rearrange() {
         //String str;
         List<Integer> tileNumbers = new ArrayList<>();
@@ -141,16 +147,6 @@ public class Board {
                 && atPosition(x,y).getTile() == null;
     }
 
-  /*  public boolean solved() {
-        boolean result = true;
-        for (Position p: positions) {
-            result = result &&
-                    ((p.getX() == size && p.getY() == size) ||
-                            (p.getTile() != null &&
-                                    p.getTile().number() == indexOf(p)));
-        }
-        return result;
-    }*/
 
     private int indexOf(Position p) {
         return (p.getY() - 1) * size + p.getX();
@@ -176,43 +172,54 @@ public class Board {
         return size;
     }
 
-    public void solveAstar (){
-        String str1 =  "268503741"; //initial state
-        String goal = "123456780"; //goal state 832507641
-        System.out.println("Astar");
-        Astar astar = new Astar(str1,goal);
-        astar.findSolution();
-        System.out.println("###############");
-    }
 
-    public void solveManhattan(){
 
-        String str1 =  "268503741"; //initial state
-        String goal = "123456780"; //goal state 832507641
+    public String solveManhattan(){
+        //String str1 =  "268503741"; //initial state
         System.out.println("Manhattan");
-        Manhattan man = new Manhattan (this.str,goal);
-        man.findSolution();
-        System.out.println("###############");
+        Manhattan man = new Manhattan (this.str,this.goal);
+        String solution = man.findSolution();
+        System.out.println ("Result is " + solution);
+        return solution;
     }
 
-    public void solveDFS (){
-        String str1 =  "268503741"; //initial state
-        String goal = "123456780"; //goal state 832507641
-        System.out.println("DFS");
-        DepthFS dfs = new DepthFS(this.str,goal);
-        dfs.doSearch();
-        System.out.println("###############");
+    public String solveBFS (){
+        System.out.println("BFS");
+       BreadthFS bfs = new BreadthFS(this.str,this.goal);
+        String solution = bfs.findSolution();
+        System.out.println ("Result is " + solution);
+        return solution;
 
+    }
+
+    public String solveMismatch () {
+        System.out.println("Mismatch");
+        Mismatch mis = new Mismatch(this.str,this.goal);
+        String solution = mis.findSolution();
+        System.out.println ("Result is " + solution);
+        return solution;
+
+
+    }
+
+    public float calFitnessFunc (String result){
+        //String result =  "128503746";
+        String goal =  "123456780";
+        int fitness=0;
+        String[] goalList = goal.split("");
+        String[] resultList = result.split("");
+        List<String> list1 = new ArrayList<String>(Arrays.asList(goalList));
+        List<String> list2 = new ArrayList<String>(Arrays.asList(resultList));
+        for (int i=0; i<list1.size();i++){
+            if (!list1.get(i).equals(list2.get(i)))fitness++;
+        }
+        System.out.println ("Fitness value is " + String.format("%.02f", (float)fitness/9));
+        return (float)fitness/9;
     }
 
     public static void main(String[] args) {
-     /*   String str =  "126457308"; //initial state
-        String goal = "123456780"; //goal state
-
-        System.out.println("A*");
-        Astar astar = new Astar(str,goal);
-        astar.findSolution();*/
-
+        //Board b= new Board();
+        //b.calFitnessFunc();
 
     }
 
@@ -226,7 +233,7 @@ public class Board {
 
         /** Called when the puzzle is solved. The number of tile moves
          * is provided as the argument. */
-        void solved(int numOfMoves);
+
     }
 
 

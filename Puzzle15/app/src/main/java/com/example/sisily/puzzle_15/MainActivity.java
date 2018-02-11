@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /** The board size. Default value is an 4x4 game. */
    // private int boardSize = 4;
 
-
+    final long startTime = System.nanoTime();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,12 +110,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     + Integer.toString(numOfMoves));
         }
 
-        public void solved(int numOfMoves) {
-            moves.setText("Solved in " + Integer.toString(numOfMoves)
-                    + " moves!");
-            Toast.makeText(getApplicationContext(), "You won!",
-                    Toast.LENGTH_LONG).show();
-        }
     };
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -161,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * @param v
+     */
     public void solveTile (View v){
         String text_inButton;
         text_inButton = (String) ( (TextView) v).getText();
@@ -168,10 +165,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (text_inButton.equals("solve")) System.out.println("Solvehere pressed");
 
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
-       // board.solveAstar();
-        //board.solveManhattan();
-       board.solveDFS();
-        System.out.println("Solveeeee pressed");
+
+       //String str = board.solveManhattan();
+
+        //String str =board.solveBFS();
+        String str =board.solveMismatch();
+        board.calFitnessFunc(str);
+
+
+        final long duration = System.nanoTime() - startTime;
+        System.out.println("time duration is " + duration/1000000000.0 + " s");
+        System.out.println("Solveet pressed");
     }
 
 }

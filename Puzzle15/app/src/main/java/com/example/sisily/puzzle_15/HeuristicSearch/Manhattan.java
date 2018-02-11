@@ -1,27 +1,27 @@
-package com.example.sisily.puzzle_15;
+package com.example.sisily.puzzle_15.HeuristicSearch;
 
 /**
  * Created by sisily on 04/02/18.
  */
 
 
-
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
+import java.util.PriorityQueue;
 
-public class BreadthFS {
+public class Manhattan {
         /*
-         Breadth first search algorithm
-         * declare openlist
-         * add root node to our openlist
-         * while openlist not empty do following loops:
+         Breadth first search algorithm with manhattan heuristic
+         * declare priorityQueue
+         * add root node to our priorityQueue
+         * while priorityQueue not empty do following loops:
          * a. retrieve then remove first node of our openlist
          * b. check status of retrieved node
          *      if it is the goal node then break loop and print solution
          *      if it is not goal node then:
          *      - expand retrieved node
-         *      - ADD expanded node at THE END of our openlist
+         *      - evaluate using manhattan heuristik
+         *      - add to priorityQueue
          *      - continue loop
          */
 
@@ -42,8 +42,8 @@ public class BreadthFS {
     String str = ""; // initial state
     String goal = ""; //goal state
 
-    // openlist
-    LinkedList <String> openList;
+
+    PriorityQueue <StateOrder> queue;
 
 
     Map<String,Integer> levelDepth;
@@ -52,28 +52,31 @@ public class BreadthFS {
     Map<String,String> stateHistory;
 
     int nodes = 0; //counter for node generation
-    int limit = 100; //counter for limit
-    int unique = -1;
-    int newValue;//counter for level depth
-    int a;
+    int limit = 150; //counter for limit
+    int unique = -1;//counter for uniq state
+    int newValue; //counter depth limit
+    int a; //position of blank
+    int h; //heuristic
 
     String currState;
-    boolean solution = false;//flag if solution exist or not
+    boolean solution = false;
 
-    BreadthFS(String str,String goal){
-        openList = new LinkedList <String> ();
+
+  public Manhattan(String str, String goal){
+        queue = new PriorityQueue <StateOrder> ();
         levelDepth = new HashMap<String, Integer>();
         stateHistory = new HashMap<String,String>();
         this.str = str;
         this.goal = goal;
-        addToOpenList(str,null);//add root
+        addToQueue(str,null);
     }
 
-    void doSearch (){
+    public String findSolution (){
 
-        while (!openList.isEmpty()){
+        while (!queue.isEmpty()){
 
-            currState = openList.removeFirst();//RETRIEVE then remove first node of our openlist
+
+            currState = queue.poll().toString();//RETRIEVE then remove first node
 
             if (currState.equals(goal)){ // check if current state is goal state
                 solution = true;
@@ -97,7 +100,7 @@ public class BreadthFS {
                 //left
                 while (a != 0 && a != 3 && a != 6){// if blank not in the left most column then it able move left
                     String nextState = currState.substring(0,a-1)+"0"+currState.charAt(a-1)+currState.substring(a+1);//swap blank with destination
-                    addToOpenList(nextState, currState);//add expanded node to openlist
+                    addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
                     break;
                 }
@@ -105,7 +108,7 @@ public class BreadthFS {
                 //up
                 while (a!=0 && a!=1 && a!=2){//if blank not in the very top of row then it able to move up
                     String nextState = currState.substring(0,a-3)+"0"+currState.substring(a-2,a)+currState.charAt(a-3)+currState.substring(a+1);//swap blank with destination
-                    addToOpenList(nextState, currState);//add expanded node to openlist
+                    addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++; //nodes = nodes + 1; a node is being genereted add it to counter
                     break;
                 }
@@ -113,7 +116,7 @@ public class BreadthFS {
                 //right
                 while(a != 2 && a != 5 && a != 8){// if blank not in the right most column then it able to move right
                     String nextState = currState.substring(0,a)+currState.charAt(a+1)+"0"+currState.substring(a+2);//swap blank with destination
-                    addToOpenList(nextState, currState);//add expanded node to openlist
+                    addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
                     break;
                 }
@@ -121,7 +124,7 @@ public class BreadthFS {
                 //down
                 while (a != 6 && a != 7 && a != 8) {// if blank not in the very bottom row then it able to move down
                     String nextState = currState.substring(0,a)+currState.substring(a+3,a+4)+currState.substring(a+1,a+3)+"0"+currState.substring(a+4);//swap blank with destination
-                    addToOpenList(nextState, currState);//add expanded node to openlist
+                    addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
                     break;
                 }
@@ -132,34 +135,65 @@ public class BreadthFS {
 
         if (solution){
             System.out.println("Solution Exist");
+            System.out.println("Solution found is " +currState + " in " + levelDepth.get(currState)+" step(s)");
         }
-        else{
+
+        else {
+            System.out.println("Solution unsolved is " +currState+ " in " + levelDepth.get(currState)+" step(s)");
             System.out.println("Solution not yet found! My suggestion are:");
             System.out.println("1. Try to increse level depth limit ");
-            System.out.println("2. Maybe it is physically impossible");
+            System.out.println("2. Use other heuristc ");
+            System.out.println("3. Maybe it is physically impossible");
         }
 
+        return currState;
     }
 
-    private void addToOpenList (String newState, String oldState){
+    public void addToQueue (String newState, String oldState){
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
             unique ++;
             levelDepth.put(newState, newValue);
-            openList.add(newState);//add node at THE END of openlist (breadthFS Algorithm)
+            h = calcManhattan(newState,goal); // calculate heuristic from newstate
+            //h= 0;
+            queue.add(new StateOrder(h,newState));//add to priority queue
             stateHistory.put(newState, oldState);
         }
 
     }
 
-    void printSolution (String currState){
+    public int calcManhattan(String currState, String goalState){
+        //lookup table for manhattan distance
+        int [][] manValue = {
+                {0,1,2,1,2,3,2,3,4},
+                {1,0,1,2,1,2,3,2,3},
+                {2,1,0,3,2,1,4,3,2},
+                {1,2,3,0,1,2,1,2,3},
+                {2,1,2,1,0,1,2,1,2},
+                {3,2,1,2,1,0,3,2,1},
+                {2,3,4,1,2,3,0,1,2},
+                {3,2,3,2,1,2,1,0,1},
+                {4,3,2,3,2,1,2,1,0},
+        };
+        //calculate manhattan distance
+        int heu = 0 ;
+        int result = 0;
+        //String a = null;
+        for (int i=1; i<9;i++){
+            heu = manValue[currState.indexOf(String.valueOf(i))][goalState.indexOf(String.valueOf(i))];
+            result = result + heu;
+
+        }
+        return result;
+    }
+
+    public void printSolution (String currState){
         if (solution){
             System.out.println("Solution found in " +levelDepth.get(currState)+" step(s)");
             System.out.println("Node generated: "+ nodes);
             System.out.println("Unique Node generated: "+ unique);
         }
-        else{
-
+        else {
             System.out.println("Solution not found!");
             System.out.println("Depth Limit Reached!");
             System.out.println("Node generated: "+ nodes);
@@ -180,7 +214,12 @@ public class BreadthFS {
         }
         //System.exit(0); //break
     }
+
+    public static void main(String[] args) {
+
+
+
+
+    }
+
 }
-
-
-

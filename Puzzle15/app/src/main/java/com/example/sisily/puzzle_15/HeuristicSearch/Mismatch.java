@@ -1,4 +1,5 @@
-package com.example.sisily.puzzle_15;
+package com.example.sisily.puzzle_15.HeuristicSearch;
+
 
 /**
  * Created by sisily on 04/02/18.
@@ -9,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class Astar {
+public class Mismatch {
         /*
-         AStar
+         Breadth first search algorithm with mismatch heuristic
          * declare priorityQueue
          * add root node to our priorityQueue
          * while priorityQueue not empty do following loops:
@@ -20,15 +21,9 @@ public class Astar {
          *      if it is the goal node then break loop and print solution
          *      if it is not goal node then:
          *      - expand retrieved node
-         *      - evaluate using f(n)
+         *      - evaluaate using mismatch heuristik
          *      - add to priorityQueue
          *      - continue loop
-         *
-         * f(n) = h(n) + g(n)
-         * n = currentState
-         * h(n) = value of heuristic
-         * g(n) = cost
-         *
          */
 
          /* Board positions index (because we use string)
@@ -49,7 +44,7 @@ public class Astar {
     String goal = ""; //goal state
 
 
-    PriorityQueue <StateOrder> queue;
+    PriorityQueue<StateOrder> queue;
 
 
     Map<String,Integer> levelDepth;
@@ -58,8 +53,8 @@ public class Astar {
     Map<String,String> stateHistory;
 
     int nodes = 0; //counter for node generation
-    int limit = 100; //counter for limit
-    int unique = -1;
+    int limit = 150; //counter for limit
+    int unique = -1;//counter for uniq state
     int newValue; //counter depth limit
     int a; //position of blank
     int h; //heuristic
@@ -67,22 +62,22 @@ public class Astar {
     String currState;
     boolean solution = false;
 
-    Astar (String str,String goal){
+   public Mismatch(String str,String goal){
         queue = new PriorityQueue <StateOrder> ();
         levelDepth = new HashMap<String, Integer>();
         stateHistory = new HashMap<String,String>();
         this.str = str;
         this.goal = goal;
         addToQueue(str,null);
-
+        //queue.add(new StateOrder(1000,str));
     }
 
-    void findSolution (){
+    public String findSolution (){
 
         while (!queue.isEmpty()){
 
 
-            currState = queue.poll().toString();//RETRIEVE then remove first node of our priority queue
+            currState = queue.poll().toString();//RETRIEVE then remove first node
 
 
             if (currState.equals(goal)){ // check if current state is goal state
@@ -142,30 +137,33 @@ public class Astar {
 
         if (solution){
             System.out.println("Solution Exist");
+            System.out.println("Solution found is " +currState + " in " + levelDepth.get(currState)+" step(s)");
         }
 
         else {
+            System.out.println("Solution unsolved is " +currState+ " in " + levelDepth.get(currState)+" step(s)");
             System.out.println("Solution not yet found! My suggestion are:");
             System.out.println("1. Try to increse level depth limit ");
             System.out.println("2. Use other heuristc ");
             System.out.println("3. Maybe it is physically impossible");
         }
 
+        return currState;
     }
 
-    private void addToQueue (String newState, String oldState){
+    public void addToQueue (String newState, String oldState){
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
             unique ++;
             levelDepth.put(newState, newValue);
-            h =  calcManhattan(newState,goal) + newValue; // f(n)
-            queue.add(new StateOrder(h,newState));//add it
+            h = calcMismatch(newState,goal); // calculate heuristic from newstate
+            queue.add(new StateOrder(h,newState));//add to
             stateHistory.put(newState, oldState);
         }
 
     }
 
-    int calcMismatch (String currState, String goalState){
+    public int calcMismatch (String currState, String goalState){
         int mismatch = 0;
         for (int i=1;i<9;i++){
             if (currState.indexOf(String.valueOf(i))!= goalState.indexOf(String.valueOf(i))){
@@ -175,32 +173,7 @@ public class Astar {
         return mismatch;
     }
 
-    int calcManhattan(String currState, String goalState){
-        //lookup table for manhattan distance
-        int [][] manValue = {
-                {0,1,2,1,2,3,2,3,4},
-                {1,0,1,2,1,2,3,2,3},
-                {2,1,0,3,2,1,4,3,2},
-                {1,2,3,0,1,2,1,2,3},
-                {2,1,2,1,0,1,2,1,2},
-                {3,2,1,2,1,0,3,2,1},
-                {2,3,4,1,2,3,0,1,2},
-                {3,2,3,2,1,2,1,0,1},
-                {4,3,2,3,2,1,2,1,0},
-        };
-        //calculate manhattan distance
-        int heu = 0 ;
-        int result = 0;
-        //String a = null;
-        for (int i=1; i<9;i++){
-            heu = manValue[currState.indexOf(String.valueOf(i))][goalState.indexOf(String.valueOf(i))];
-            result = result + heu;
-
-        }
-        return result;
-    }
-
-    void printSolution (String currState){
+    public void printSolution (String currState){
         if (solution){
             System.out.println("Solution found in " +levelDepth.get(currState)+" step(s)");
             System.out.println("Node generated: "+ nodes);
