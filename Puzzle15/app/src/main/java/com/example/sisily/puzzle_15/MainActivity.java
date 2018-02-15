@@ -42,49 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mainView = (ViewGroup) findViewById(R.id.mainLayout);
         moves = (TextView) findViewById(R.id.moves);
-        moves.setTextColor(Color.BLUE);
+        moves.setTextColor(Color.WHITE);
         moves.setTextSize(20);
         this.newGame();
 
-       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
-       Button yourBtn = (Button)findViewById(R.id.block1);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block2);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block3);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block4);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block5);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block6);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block7);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block8);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block9);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block10);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block11);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block12);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block13);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block14);
-        yourBtn.setOnClickListener(this);
-        yourBtn = (Button)findViewById(R.id.block15);
-        yourBtn.setOnClickListener(this);*/
     }
 
     @Override
@@ -166,11 +128,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
 
-       //String str = board.solveManhattan();
+       String str = board.solveManhattan();
 
         //String str =board.solveBFS();
-        String str =board.solveMismatch();
-        board.calFitnessFunc(str);
+        //String str =board.solveMismatch();
+       //board.calFitnessFunc(str);
 
 
         final long duration = System.nanoTime() - startTime;

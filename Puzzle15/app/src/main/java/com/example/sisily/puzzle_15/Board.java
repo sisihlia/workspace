@@ -40,12 +40,22 @@ public class Board {
     public Board(){
         listeners = new ArrayList<BoardChangeListener>();
         //this.size = 4;
+        Position p;
         positions = new ArrayList<Position>(size * size);
         for (int x = 1; x <= size; x++) {
             for (int y = 1; y <= size; y++) {
-                positions.add(x == size && y == size ?
+                if (x==size && y ==size){
+                     p = new Position (x,y,this);
+                }else {
+                     p = new Position (x, y, (y - 1)* size + x, this);
+                }
+
+                positions.add(p);
+                /*positions.add(x == size && y == size ?
                         new Position(x, y, this)
-                        : new Position(x, y, (y - 1)* size + x, this));
+                        : new Position(x, y, (y - 1)* size + x, this));*/
+
+                //(condition) ? (code for YES) : (code for NO)
             }
         }
         numOfMoves = 0;
@@ -70,7 +80,8 @@ public class Board {
             System.out.println ("Tile is " + positions.get(5).hasTile());
         }*/
 
-       for (int i=0; i<size*size; i++){
+
+       /*for (int i=0; i<size*size; i++){
            if (positions.get(i).hasTile()) {
                tileNumbers.add(positions.get(i).getTile().number());
                System.out.println("Position " + ""+ i + "" +" has tile number " + positions.get(i).getTile().number());
@@ -78,7 +89,19 @@ public class Board {
                tileNumbers.add(0);
             System.out.println ("Position " + "" +i + " has no tile");
            }
-       }
+       }*/
+
+        for (int i=0; i<3; i++){
+           for (int j=i; j<9; j+=3){
+               if (positions.get(j).hasTile()) {
+                   tileNumbers.add(positions.get(j).getTile().number());
+                  //System.out.println("Position " + ""+ i + "" +" has tile number " + positions.get(i).getTile().number());
+               } else {
+                   tileNumbers.add(0);
+                   //System.out.println ("Position " + "" +i + " has no tile");
+               }
+           }
+        }
 
         System.out.println(Arrays.toString(tileNumbers.toArray()));
         str=(tileNumbers.toString().replaceAll("\\[|\\]|[,][ ]",""));
@@ -180,6 +203,11 @@ public class Board {
         Manhattan man = new Manhattan (this.str,this.goal);
         String solution = man.findSolution();
         System.out.println ("Result is " + solution);
+       /*for (int i=0; i<man.getMovements().size();i++){
+            System.out.println(man.getMovements().get(i));
+
+        }*/
+
         return solution;
     }
 
@@ -220,6 +248,9 @@ public class Board {
     public static void main(String[] args) {
         //Board b= new Board();
         //b.calFitnessFunc();
+        int []arr = {1,2,3,4,5,6,7,8};
+        List<Integer> intList=new ArrayList<>();
+
 
     }
 

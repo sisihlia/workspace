@@ -5,7 +5,9 @@ package com.example.sisily.puzzle_15.HeuristicSearch;
  */
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
@@ -60,6 +62,7 @@ public class Manhattan {
 
     String currState;
     boolean solution = false;
+    List<String> movements = new ArrayList<>();
 
 
   public Manhattan(String str, String goal){
@@ -72,7 +75,7 @@ public class Manhattan {
     }
 
     public String findSolution (){
-
+        String move="hyuj";
         while (!queue.isEmpty()){
 
 
@@ -91,6 +94,7 @@ public class Manhattan {
                 break;
             }
 
+
             else {
                 //expand currentstate then add expanded node to the of openlist
 
@@ -102,6 +106,11 @@ public class Manhattan {
                     String nextState = currState.substring(0,a-1)+"0"+currState.charAt(a-1)+currState.substring(a+1);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
+
+                    move = "L";
+
+                    //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
+                    movements.add("0 to left");
                     break;
                 }
 
@@ -110,6 +119,9 @@ public class Manhattan {
                     String nextState = currState.substring(0,a-3)+"0"+currState.substring(a-2,a)+currState.charAt(a-3)+currState.substring(a+1);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++; //nodes = nodes + 1; a node is being genereted add it to counter
+                   move = "U";
+                   // System.out.println ("move to " +move + " at " + levelDepth.get(currState));
+                     movements.add("0 to up");
                     break;
                 }
 
@@ -118,6 +130,9 @@ public class Manhattan {
                     String nextState = currState.substring(0,a)+currState.charAt(a+1)+"0"+currState.substring(a+2);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
+                    move = "R";
+                    //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
+                    movements.add("0 to right");
                     break;
                 }
 
@@ -126,11 +141,17 @@ public class Manhattan {
                     String nextState = currState.substring(0,a)+currState.substring(a+3,a+4)+currState.substring(a+1,a+3)+"0"+currState.substring(a+4);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
+                    move = "D";
+                   // System.out.println ("move to " +move + " at " + levelDepth.get(currState));
+                     movements.add("0 to down");
                     break;
                 }
 
             }
-
+            synchronized (this) {
+                String traceState = currState;
+                System.out.println("move to " + move + " at " + levelDepth.get(traceState));
+            }
         }
 
         if (solution){
@@ -139,7 +160,7 @@ public class Manhattan {
         }
 
         else {
-            System.out.println("Solution unsolved is " +currState+ " in " + levelDepth.get(currState)+" step(s)");
+            System.out.println("State unsolved  " +currState+ " in " + levelDepth.get(currState)+" step(s)");
             System.out.println("Solution not yet found! My suggestion are:");
             System.out.println("1. Try to increse level depth limit ");
             System.out.println("2. Use other heuristc ");
@@ -160,6 +181,10 @@ public class Manhattan {
             stateHistory.put(newState, oldState);
         }
 
+    }
+
+    public List<String> getMovements(){
+        return movements;
     }
 
     public int calcManhattan(String currState, String goalState){
@@ -201,6 +226,7 @@ public class Manhattan {
         }
 
         String traceState = currState;
+
         while (traceState != null) {
             System.out.println(traceState + " at " + levelDepth.get(traceState));
             try{

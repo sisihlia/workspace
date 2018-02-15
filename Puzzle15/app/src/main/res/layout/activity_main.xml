@@ -105,7 +105,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/mainLayout"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@android:color/holo_blue_dark"
+android:background="@android:color/black"
 android:orientation="vertical"
     tools:context="com.example.sisily.puzzle_15.MainActivity" >
 
@@ -115,22 +115,29 @@ android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" />
 
-
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
     <Button
         android:id="@+id/solve"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/solve"
-        android:onClick="solveTile"/>
+        android:layout_alignParentLeft="true"
+        android:onClick="solveTile"
+        android:text="@string/solve" />
 
     <Button
         android:id="@+id/shuffle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:text="@string/shuffle"
         android:onClick="suffleTile"/>
 
-
+    </RelativeLayout>
 
 
 </LinearLayout>
