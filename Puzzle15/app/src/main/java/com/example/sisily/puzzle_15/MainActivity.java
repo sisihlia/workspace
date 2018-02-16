@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ViewGroup mainView;
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /** The board size. Default value is an 4x4 game. */
    // private int boardSize = 4;
 
-    final long startTime = System.nanoTime();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,17 +132,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        // if (text_inButton.equals("solve")) System.out.println("Solvehere pressed");
 
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
-
-       String str = board.solveManhattan();
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        final long startTime = System.nanoTime();
+      //String str = board.solveManhattan();
 
         //String str =board.solveBFS();
-        //String str =board.solveMismatch();
-       //board.calFitnessFunc(str);
+      String str =board.solveMismatch();
+       board.calFitnessFunc(str);
 
 
+
+
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         final long duration = System.nanoTime() - startTime;
         System.out.println("time duration is " + duration/1000000000.0 + " s");
-        //System.out.println("Solveet pressed");
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        System.out.println("Actual Memory used " + Long.toString(actualMemUsed));
     }
 
 }

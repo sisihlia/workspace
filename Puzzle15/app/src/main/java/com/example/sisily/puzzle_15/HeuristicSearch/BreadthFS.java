@@ -6,8 +6,10 @@ package com.example.sisily.puzzle_15.HeuristicSearch;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class BreadthFS {
@@ -59,6 +61,7 @@ public class BreadthFS {
 
     String currState;
     boolean solution = false;//flag if solution exist or not
+    List<String> movements = new ArrayList<>();
 
     public BreadthFS(String str,String goal){
         openList = new LinkedList <String> ();
@@ -132,14 +135,22 @@ public class BreadthFS {
 
         if (solution){
             System.out.println("Solution Exist");
+            System.out.println("State found is " +currState + " in " + levelDepth.get(currState)+" step(s)");
         }
-        else{
-            System.out.println("Solution not yet found! My suggestion are:");
-            System.out.println("1. Try to increse level depth limit ");
-            System.out.println("2. Maybe it is physically impossible");
+
+        else {
+            System.out.println("State unsolved  " +currState+ " in " + levelDepth.get(currState)+" step(s)");
+            System.out.println("Solution not yet found!");
+           // System.out.println("Solution not yet found! My suggestion are:");
+           // System.out.println("1. Try to increse level depth limit ");
+           // System.out.println("2. Maybe it is physically impossible");
         }
         return currState;
 
+    }
+
+    public List<String> getMovements(){
+        return movements;
     }
 
     public void addToOpenList (String newState, String oldState){
@@ -169,7 +180,9 @@ public class BreadthFS {
         }
 
         String traceState = currState;
+        synchronized (this) {
         while (traceState != null) {
+            movements.add(traceState);
             System.out.println(traceState + " at " + levelDepth.get(traceState));
             try{
                 for(int z=0;z<9;z++){
@@ -179,7 +192,7 @@ public class BreadthFS {
             }
             catch (NullPointerException e) {}
             traceState = stateHistory.get(traceState);
-        }
+        }}
         //System.exit(0); //break
     }
 }

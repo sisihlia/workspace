@@ -30,8 +30,10 @@ public class Board {
     private final List<BoardChangeListener> listeners;
     private String str;
     private String goal = "123456780";
+
     private List<String>movements=new ArrayList<>();
     List<String> arr = new ArrayList<>();
+
     /** To arrange tiles randomly. */
     private final static Random random = new Random();
 
@@ -76,23 +78,7 @@ public class Board {
         for (int i = 0; i < size*size; i++) {
             swapTiles();
         }
-       /*if (positions.get(5).hasTile()) {
 
-            System.out.println("P1 pos " + "" + positions.get(5).getTile().number());
-        }else {
-            System.out.println ("Tile is " + positions.get(5).hasTile());
-        }*/
-
-
-       /*for (int i=0; i<size*size; i++){
-           if (positions.get(i).hasTile()) {
-               tileNumbers.add(positions.get(i).getTile().number());
-               System.out.println("Position " + ""+ i + "" +" has tile number " + positions.get(i).getTile().number());
-           } else {
-               tileNumbers.add(0);
-            System.out.println ("Position " + "" +i + " has no tile");
-           }
-       }*/
 
         for (int i=0; i<3; i++){
            for (int j=i; j<9; j+=3){
@@ -121,9 +107,7 @@ public class Board {
             Tile t = p1.getTile();
             p1.setTile(p2.getTile());
             p2.setTile(t);
-
         }
-
     }
 
     public boolean solvable() {
@@ -225,9 +209,8 @@ public class Board {
         return size;
     }
 
-    public List<String> getMovement (){
+    public List<String> getDirection (){
         String move;
-
         //String p1="208635147";
         //String p2="238605147";
     for (int i=arr.size()-1;i>0.;i--){
@@ -249,35 +232,50 @@ public class Board {
     }
 
     public String solveManhattan(){
-        String str1 =  "208635147"; //initial state
-        System.out.println("Manhattan");
-        Manhattan man = new Manhattan (str1,this.goal);
+       // String str1 =  "208635147"; //initial state
+       // System.out.println("Manhattan");
+        Manhattan man = new Manhattan (this.str,this.goal);
         String solution = man.findSolution();
-        System.out.println ("Result is " + solution);
-        arr = man.getMovements();
-        for (int i=0; i<arr.size();i++){
-        System.out.println("here " + arr.get(i));
-        }
 
+        arr = man.getMovements();
+        if (this.solvable()){
+            List<String> p = this.getDirection();
+            for (int i=0; i<p.size();i++){
+                System.out.println("here i= "+i + " " + p.get(i));
+            }
+        }
         return solution;
     }
 
     public String solveBFS (){
         System.out.println("BFS");
+       // String str1 =  "208635147"; //initial state
        BreadthFS bfs = new BreadthFS(this.str,this.goal);
         String solution = bfs.findSolution();
-        System.out.println ("Result is " + solution);
+        arr = bfs.getMovements();
+        if (this.solvable()){
+            List<String> p = this.getDirection();
+            for (int i=0; i<p.size();i++){
+                System.out.println("here i= "+i + " " + p.get(i));
+            }
+        }
         return solution;
 
     }
 
     public String solveMismatch () {
+       // String str1 =  "208635147"; //initial state
         System.out.println("Mismatch");
         Mismatch mis = new Mismatch(this.str,this.goal);
         String solution = mis.findSolution();
-        System.out.println ("Result is " + solution);
+        arr = mis.getMovements();
+        if (this.solvable()){
+            List<String> p = this.getDirection();
+            for (int i=0; i<p.size();i++){
+                System.out.println("here i= "+i + " " + p.get(i));
+            }
+        }
         return solution;
-
 
     }
 
@@ -297,38 +295,10 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        Board b= new Board();
-
-        b.solveManhattan();
-        List<String> p = b.getMovement();
-        for (int i=0; i<p.size();i++){
-        System.out.println("here " + p.get(i));
-        }
-        //int []arr = {1,2,3,4,5,6,7,8};
-        //List<Integer> intList=new ArrayList<>();
-
-
+      Board b= new Board();
+      b.solveManhattan();
     }
 
-    /*here 18
-  here DOWN
-here LEFT
-here DOWN
-here RIGHT
-here RIGHT
-here UP
-here UP
-here LEFT
-here LEFT
-here DOWN
-here DOWN
-here RIGHT
-here RIGHT
-here UP
-here LEFT
-here DOWN
-here RIGHT
-            */
     public interface BoardChangeListener {
 
         /** Called when the tile located at the <code>from</code>
@@ -336,9 +306,6 @@ here RIGHT
          * will be provided in new states; i.e., <code>from</code> will
          * be empty and <code>to</code> will be the tile moved. */
         void tileSlid(Position from, Position to, int numOfMoves);
-
-        /** Called when the puzzle is solved. The number of tile moves
-         * is provided as the argument. */
 
     }
 

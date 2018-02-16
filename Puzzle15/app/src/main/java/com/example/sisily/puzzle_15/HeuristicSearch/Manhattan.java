@@ -61,10 +61,7 @@ public class Manhattan {
     int h; //heuristic
     int counter=0;
     String currState;
-
-
-    String direction;
-
+   // String direction;
     boolean solution = false;
     List<String> movements = new ArrayList<>();
 
@@ -87,7 +84,6 @@ public class Manhattan {
 
             if (currState.equals(goal)){ // check if current state is goal state
                 solution = true;
-                //System.out.println("hiihjjkii");
                 printSolution(currState);// print solutions
                 break;
             }
@@ -110,62 +106,38 @@ public class Manhattan {
 
                 //left
                 while (a != 0 && a != 3 && a != 6){// if blank not in the left most column then it able move left
-                   //  direction = "left";
-                   // getMovements(direction);
                     String nextState = currState.substring(0,a-1)+"0"+currState.charAt(a-1)+currState.substring(a+1);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
-
-                    //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-
                     break;
                 }
 
                 //up
                 while (a!=0 && a!=1 && a!=2){//if blank not in the very top of row then it able to move up
-
                     String nextState = currState.substring(0,a-3)+"0"+currState.substring(a-2,a)+currState.charAt(a-3)+currState.substring(a+1);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++; //nodes = nodes + 1; a node is being genereted add it to counter
-
                     break;
                 }
 
                 //right
                 while(a != 2 && a != 5 && a != 8){// if blank not in the right most column then it able to move right
-                   //  direction = "up";
-                    //getMovements(direction);
                     String nextState = currState.substring(0,a)+currState.charAt(a+1)+"0"+currState.substring(a+2);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
-
-                    //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-                    //System.out.println("counter here " + counter);
-                    break;
+                     break;
                 }
 
                 //down
                 while (a != 6 && a != 7 && a != 8) {// if blank not in the very bottom row then it able to move down
-                   //  direction = "down";
-                   // getMovements(direction);
-
                     String nextState = currState.substring(0,a)+currState.substring(a+3,a+4)+currState.substring(a+1,a+3)+"0"+currState.substring(a+4);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
-
-                   //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-                    //System.out.println("counter here " + counter);
-                    break;
+                   break;
                 }
 
             }
 
-            synchronized (this) {
-                counter++;
-               // String traceState = currState;
-               // System.out.println ("counter " + counter);
-               // System.out.println("move to " + move + " at " + levelDepth.get(traceState));
-            }
         }
 
         if (solution){
@@ -185,8 +157,7 @@ public class Manhattan {
     }
 
     public void addToQueue (String newState, String oldState){
-        //System.out.println ("old state " + oldState);
-        //System.out.println ("new state " + newState + "\n");
+
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
             unique ++;
