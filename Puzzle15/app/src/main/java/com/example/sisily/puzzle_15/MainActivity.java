@@ -107,14 +107,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String text_inButton;
         text_inButton = (String) ( (TextView) v).getText();
 
-        if (text_inButton.equals("shuffle")) System.out.println("Shuffle pressed");
+       // if (text_inButton.equals("shuffle")) System.out.println("Shuffle pressed");
 
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
 
         board.rearrange();
         moves.setText("Number of movements: 0");
         boardView.invalidate();
-
+        if(!board.solvable()) {System.out.println("The puzzle is not solvable.\nYou can try it yourself or re-shuffle");}
+        else {System.out.println("The puzzle is solvable");}
     }
 
     /**
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String text_inButton;
         text_inButton = (String) ( (TextView) v).getText();
 
-        if (text_inButton.equals("solve")) System.out.println("Solvehere pressed");
+       // if (text_inButton.equals("solve")) System.out.println("Solvehere pressed");
 
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
 
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         final long duration = System.nanoTime() - startTime;
         System.out.println("time duration is " + duration/1000000000.0 + " s");
-        System.out.println("Solveet pressed");
+        //System.out.println("Solveet pressed");
     }
 
 }

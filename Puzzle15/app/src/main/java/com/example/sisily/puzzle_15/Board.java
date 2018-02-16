@@ -30,12 +30,15 @@ public class Board {
     private final List<BoardChangeListener> listeners;
     private String str;
     private String goal = "123456780";
-
+    private List<String>movements=new ArrayList<>();
+    List<String> arr = new ArrayList<>();
     /** To arrange tiles randomly. */
     private final static Random random = new Random();
 
     private long startTime;
     private long endTime;
+
+
 
     public Board(){
         listeners = new ArrayList<BoardChangeListener>();
@@ -106,7 +109,7 @@ public class Board {
         System.out.println(Arrays.toString(tileNumbers.toArray()));
         str=(tileNumbers.toString().replaceAll("\\[|\\]|[,][ ]",""));
        // str = (Arrays.deepToString(tileNumbers.toArray()));
-        System.out.println(str);
+       // System.out.println(str);
         return str;
 
     }
@@ -121,6 +124,33 @@ public class Board {
 
         }
 
+    }
+
+    public boolean solvable() {
+        // alg. from: http://www.cs.bham.ac.uk/~mdr/teaching/modules04/
+        //                 java2/TilesSolvability.html
+        //
+        // count the number of inversions, where an inversion is when
+        // a tile precedes another tile with a lower number on it.
+        int inversion = 0;
+        for (Position p: positions) {
+            Tile pt = p.getTile();
+            for (Position q: positions) {
+                Tile qt = q.getTile();
+                if (p != q && pt != null && qt != null &&
+                        indexOf(p) < indexOf(q) &&
+                        pt.number() > qt.number()) {
+                    inversion++;
+                }
+            }
+        }
+        final boolean isEvenSize = size % 2 == 0;
+        final boolean isEvenInversion = inversion % 2 == 0;
+        boolean isBlankOnOddRow = blank().getY() % 2 == 1;
+        // from the bottom
+        isBlankOnOddRow = isEvenSize ? !isBlankOnOddRow : isBlankOnOddRow;
+        return (!isEvenSize && isEvenInversion) ||
+                (isEvenSize && isBlankOnOddRow == isEvenInversion);
     }
 
     public Position atPosition(int x, int y) {
@@ -195,18 +225,39 @@ public class Board {
         return size;
     }
 
+    public List<String> getMovement (){
+        String move;
 
+        //String p1="208635147";
+        //String p2="238605147";
+    for (int i=arr.size()-1;i>0.;i--){
+        //if(i==arr.size()-1){break;}
+
+        int indexp1=arr.get(i).indexOf("0");
+        int indexp2=arr.get(i-1).indexOf("0");
+        if (indexp1>indexp2){// either UP or LEFT
+            if (indexp2==indexp1-1) {move="LEFT"; movements.add(move);}
+            else {move="UP"; movements.add(move);}
+        }
+
+        if (indexp1<indexp2){//either DOWN or RIGHT
+            if (indexp1==indexp2-1) {move="RIGHT"; movements.add(move);}
+            else {move="DOWN"; movements.add(move);}
+        }
+    }
+        return movements;
+    }
 
     public String solveManhattan(){
-        //String str1 =  "268503741"; //initial state
+        String str1 =  "208635147"; //initial state
         System.out.println("Manhattan");
-        Manhattan man = new Manhattan (this.str,this.goal);
+        Manhattan man = new Manhattan (str1,this.goal);
         String solution = man.findSolution();
         System.out.println ("Result is " + solution);
-       /*for (int i=0; i<man.getMovements().size();i++){
-            System.out.println(man.getMovements().get(i));
-
-        }*/
+        arr = man.getMovements();
+        for (int i=0; i<arr.size();i++){
+        System.out.println("here " + arr.get(i));
+        }
 
         return solution;
     }
@@ -246,14 +297,38 @@ public class Board {
     }
 
     public static void main(String[] args) {
-        //Board b= new Board();
-        //b.calFitnessFunc();
-        int []arr = {1,2,3,4,5,6,7,8};
-        List<Integer> intList=new ArrayList<>();
+        Board b= new Board();
+
+        b.solveManhattan();
+        List<String> p = b.getMovement();
+        for (int i=0; i<p.size();i++){
+        System.out.println("here " + p.get(i));
+        }
+        //int []arr = {1,2,3,4,5,6,7,8};
+        //List<Integer> intList=new ArrayList<>();
 
 
     }
 
+    /*here 18
+  here DOWN
+here LEFT
+here DOWN
+here RIGHT
+here RIGHT
+here UP
+here UP
+here LEFT
+here LEFT
+here DOWN
+here DOWN
+here RIGHT
+here RIGHT
+here UP
+here LEFT
+here DOWN
+here RIGHT
+            */
     public interface BoardChangeListener {
 
         /** Called when the tile located at the <code>from</code>

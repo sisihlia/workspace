@@ -59,8 +59,12 @@ public class Manhattan {
     int newValue; //counter depth limit
     int a; //position of blank
     int h; //heuristic
-
+    int counter=0;
     String currState;
+
+
+    String direction;
+
     boolean solution = false;
     List<String> movements = new ArrayList<>();
 
@@ -75,7 +79,7 @@ public class Manhattan {
     }
 
     public String findSolution (){
-        String move="hyuj";
+
         while (!queue.isEmpty()){
 
 
@@ -83,6 +87,7 @@ public class Manhattan {
 
             if (currState.equals(goal)){ // check if current state is goal state
                 solution = true;
+                //System.out.println("hiihjjkii");
                 printSolution(currState);// print solutions
                 break;
             }
@@ -95,7 +100,9 @@ public class Manhattan {
             }
 
 
+
             else {
+
                 //expand currentstate then add expanded node to the of openlist
 
                 a = currState.indexOf("0");// get index position of 0 (blank)
@@ -103,74 +110,83 @@ public class Manhattan {
 
                 //left
                 while (a != 0 && a != 3 && a != 6){// if blank not in the left most column then it able move left
+                   //  direction = "left";
+                   // getMovements(direction);
                     String nextState = currState.substring(0,a-1)+"0"+currState.charAt(a-1)+currState.substring(a+1);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
 
-                    move = "L";
-
                     //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-                    movements.add("0 to left");
+
                     break;
                 }
 
                 //up
                 while (a!=0 && a!=1 && a!=2){//if blank not in the very top of row then it able to move up
+
                     String nextState = currState.substring(0,a-3)+"0"+currState.substring(a-2,a)+currState.charAt(a-3)+currState.substring(a+1);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++; //nodes = nodes + 1; a node is being genereted add it to counter
-                   move = "U";
-                   // System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-                     movements.add("0 to up");
+
                     break;
                 }
 
                 //right
                 while(a != 2 && a != 5 && a != 8){// if blank not in the right most column then it able to move right
+                   //  direction = "up";
+                    //getMovements(direction);
                     String nextState = currState.substring(0,a)+currState.charAt(a+1)+"0"+currState.substring(a+2);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
-                    move = "R";
+
                     //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-                    movements.add("0 to right");
+                    //System.out.println("counter here " + counter);
                     break;
                 }
 
                 //down
                 while (a != 6 && a != 7 && a != 8) {// if blank not in the very bottom row then it able to move down
+                   //  direction = "down";
+                   // getMovements(direction);
+
                     String nextState = currState.substring(0,a)+currState.substring(a+3,a+4)+currState.substring(a+1,a+3)+"0"+currState.substring(a+4);//swap blank with destination
                     addToQueue(nextState, currState);//add expanded node to openlist
                     nodes++;
-                    move = "D";
-                   // System.out.println ("move to " +move + " at " + levelDepth.get(currState));
-                     movements.add("0 to down");
+
+                   //System.out.println ("move to " +move + " at " + levelDepth.get(currState));
+                    //System.out.println("counter here " + counter);
                     break;
                 }
 
             }
+
             synchronized (this) {
-                String traceState = currState;
-                System.out.println("move to " + move + " at " + levelDepth.get(traceState));
+                counter++;
+               // String traceState = currState;
+               // System.out.println ("counter " + counter);
+               // System.out.println("move to " + move + " at " + levelDepth.get(traceState));
             }
         }
 
         if (solution){
             System.out.println("Solution Exist");
-            System.out.println("Solution found is " +currState + " in " + levelDepth.get(currState)+" step(s)");
+            System.out.println("State found is " +currState + " in " + levelDepth.get(currState)+" step(s)");
         }
 
         else {
             System.out.println("State unsolved  " +currState+ " in " + levelDepth.get(currState)+" step(s)");
-            System.out.println("Solution not yet found! My suggestion are:");
-            System.out.println("1. Try to increse level depth limit ");
-            System.out.println("2. Use other heuristc ");
-            System.out.println("3. Maybe it is physically impossible");
+            System.out.println("Solution not yet found!");
+           // System.out.println("1. Try to increse level depth limit ");
+           // System.out.println("2. Use other heuristc ");
+           // System.out.println("3. Maybe it is physically impossible");
         }
 
         return currState;
     }
 
     public void addToQueue (String newState, String oldState){
+        //System.out.println ("old state " + oldState);
+        //System.out.println ("new state " + newState + "\n");
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
             unique ++;
@@ -179,6 +195,7 @@ public class Manhattan {
             //h= 0;
             queue.add(new StateOrder(h,newState));//add to priority queue
             stateHistory.put(newState, oldState);
+
         }
 
     }
@@ -188,6 +205,7 @@ public class Manhattan {
     }
 
     public int calcManhattan(String currState, String goalState){
+
         //lookup table for manhattan distance
         int [][] manValue = {
                 {0,1,2,1,2,3,2,3,4},
@@ -213,6 +231,7 @@ public class Manhattan {
     }
 
     public void printSolution (String currState){
+
         if (solution){
             System.out.println("Solution found in " +levelDepth.get(currState)+" step(s)");
             System.out.println("Node generated: "+ nodes);
@@ -226,11 +245,14 @@ public class Manhattan {
         }
 
         String traceState = currState;
+        synchronized (this) {
 
         while (traceState != null) {
+            movements.add(traceState);
             System.out.println(traceState + " at " + levelDepth.get(traceState));
             try{
                 for(int z=0;z<9;z++){
+
                     System.out.print(" " + String.valueOf(traceState.charAt(z)) + " ");
                     if ((z+1) % 3 == 0){System.out.println();}
                 }
@@ -239,7 +261,8 @@ public class Manhattan {
             traceState = stateHistory.get(traceState);
         }
         //System.exit(0); //break
-    }
+    }}
+
 
     public static void main(String[] args) {
 
