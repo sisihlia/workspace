@@ -4,6 +4,7 @@ package com.example.sisily.puzzle_15;
  * Created by sisily on 01/02/18.
  */
 
+/** A tile of the puzzle. Each tile has a (unique) number. */
 public class Tile {
 
     private final int number;

@@ -33,23 +33,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
    // private int boardSize = 4;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
 
         mainView = (ViewGroup) findViewById(R.id.mainLayout);
         moves = (TextView) findViewById(R.id.moves);
         moves.setTextColor(Color.WHITE);
         moves.setTextSize(20);
         this.newGame();
-
 
     }
 
@@ -60,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    /** initiate the constractor */
     private void newGame() {
         this.board = new Board();
         this.board.addBoardChangeListener(boardChangeListener);
@@ -70,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.moves.setText("Number of movements: 0");
     }
 
+    /** declare board listener */
     private Board.BoardChangeListener boardChangeListener = new Board.BoardChangeListener() {
         public void tileSlid(Position from, Position to, int numOfMoves) {
             moves.setText("Number of movements: "
@@ -107,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
     }
 
+    /** to shuffle the tiles */
     public void suffleTile (View v){
         String text_inButton;
         text_inButton = (String) ( (TextView) v).getText();
@@ -123,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * @param v
+     * to solve the puzzle. There are 3 options : Manhattan, BFS, Mismatch
      */
     public void solveTile (View v){
         String text_inButton;
@@ -134,14 +130,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ((Button) v ).setTextColor(Color.parseColor("#303F9F"));
         long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         final long startTime = System.nanoTime();
-      //String str = board.solveManhattan();
 
+        //String str = board.solveManhattan();
         //String str =board.solveBFS();
-      String str =board.solveMismatch();
-       board.calFitnessFunc(str);
-
-
-
+        String str =board.solveMismatch();
+        board.calFitnessFunc(str);
 
         long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         final long duration = System.nanoTime() - startTime;

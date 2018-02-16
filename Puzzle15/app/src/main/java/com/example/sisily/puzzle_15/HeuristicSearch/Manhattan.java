@@ -44,13 +44,13 @@ public class Manhattan {
     String str = ""; // initial state
     String goal = ""; //goal state
 
-
+    /** declare the queue */
     PriorityQueue <StateOrder> queue;
 
-
+    /** declare the queue */
     Map<String,Integer> levelDepth;
 
-
+    /** declare the state history */
     Map<String,String> stateHistory;
 
     int nodes = 0; //counter for node generation
@@ -60,12 +60,16 @@ public class Manhattan {
     int a; //position of blank
     int h; //heuristic
     int counter=0;
+
     String currState;
-   // String direction;
+
+    /** solution found */
     boolean solution = false;
+
+    /** List for every state to solve the puzzle */
     List<String> movements = new ArrayList<>();
 
-
+  /** initiate the constructor */
   public Manhattan(String str, String goal){
         queue = new PriorityQueue <StateOrder> ();
         levelDepth = new HashMap<String, Integer>();
@@ -75,6 +79,7 @@ public class Manhattan {
         addToQueue(str,null);
     }
 
+    /** method to find the solution based on Manhattan */
     public String findSolution (){
 
         while (!queue.isEmpty()){
@@ -156,6 +161,7 @@ public class Manhattan {
         return currState;
     }
 
+    /** add to the queue the new node */
     public void addToQueue (String newState, String oldState){
 
         if(!levelDepth.containsKey(newState)){// check repeated state
@@ -171,10 +177,12 @@ public class Manhattan {
 
     }
 
+    /** Returns the movements */
     public List<String> getMovements(){
         return movements;
     }
 
+    /** Returns the manhattan value to decide the best way */
     public int calcManhattan(String currState, String goalState){
 
         //lookup table for manhattan distance
@@ -201,6 +209,7 @@ public class Manhattan {
         return result;
     }
 
+    /** print the solutions */
     public void printSolution (String currState){
 
         if (solution){

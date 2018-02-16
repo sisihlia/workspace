@@ -40,7 +40,7 @@ public class BoardView extends View {
      * (non-Javadoc)
      *
      * @see android.view.View#onSizeChanged(int, int, int, int)
-     */
+    */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         this.width = w / this.board.size();
@@ -49,13 +49,13 @@ public class BoardView extends View {
     }
 
     /**
-     * Locate place.
+     * Locate position.
      *
      * @param x
      *            the x
      * @param y
      *            the y
-     * @return the place
+     * @return the position
      */
     private Position locatePlace(float x, float y) {
         int ix = (int) (x / width);
@@ -64,11 +64,7 @@ public class BoardView extends View {
         return board.atPosition(ix + 1, iy + 1);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see android.view.View#onTouchEvent(android.view.MotionEvent)
-     */
+    /** return boolean value of onTouchEvent*/
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() != MotionEvent.ACTION_DOWN)
@@ -81,11 +77,7 @@ public class BoardView extends View {
         return true;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see android.view.View#onDraw(android.graphics.Canvas)
-     */
+    /** draw the board with given size (size=3) */
     @Override
     protected void onDraw(Canvas canvas) {
         Paint background = new Paint();

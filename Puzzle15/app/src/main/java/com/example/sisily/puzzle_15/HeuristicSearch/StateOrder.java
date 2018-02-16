@@ -17,12 +17,13 @@ public class StateOrder implements Comparable
      @param aDescription the description of state
 
      */
-
+    /** declare the priority */
     private int priority;
 
+    /** declare the desc */
     private String description;
 
-
+    /** initiate the constructor */
     public StateOrder (int aPriority, String aDescription)
 
     {
@@ -44,7 +45,7 @@ public class StateOrder implements Comparable
 
     }
 
-
+    /** Returns the value comparison */
     public int compareTo(Object otherObject)
 
     {

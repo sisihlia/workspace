@@ -45,13 +45,13 @@ public class Mismatch {
     String str = ""; // initial state
     String goal = ""; //goal state
 
-
+    /** declare the queue */
     PriorityQueue<StateOrder> queue;
 
-
+    /** declare the queue */
     Map<String,Integer> levelDepth;
 
-
+    /** declare the state hostory */
     Map<String,String> stateHistory;
 
     int nodes = 0; //counter for node generation
@@ -62,9 +62,14 @@ public class Mismatch {
     int h; //heuristic
 
     String currState;
+
+    /** solution found */
     boolean solution = false;
+
+    /** List for every state to solve the puzzle */
     List<String> movements = new ArrayList<>();
 
+    /** initiate the constructor */
    public Mismatch(String str,String goal){
         queue = new PriorityQueue <StateOrder> ();
         levelDepth = new HashMap<String, Integer>();
@@ -75,6 +80,7 @@ public class Mismatch {
         //queue.add(new StateOrder(1000,str));
     }
 
+    /** method to find the solution based on Mismatch */
     public String findSolution (){
 
         while (!queue.isEmpty()){
@@ -154,6 +160,7 @@ public class Mismatch {
         return currState;
     }
 
+    /** add to the queue the new node */
     public void addToQueue (String newState, String oldState){
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
@@ -166,10 +173,12 @@ public class Mismatch {
 
     }
 
+    /** Returns the movements */
     public List<String> getMovements(){
         return movements;
     }
 
+    /** Returns the mismatch value to decide the best way */
     public int calcMismatch (String currState, String goalState){
         int mismatch = 0;
         for (int i=1;i<9;i++){
@@ -180,6 +189,7 @@ public class Mismatch {
         return mismatch;
     }
 
+    /** print the solutions */
     public void printSolution (String currState){
         if (solution){
             System.out.println("Solution found in " +levelDepth.get(currState)+" step(s)");

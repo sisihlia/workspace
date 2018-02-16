@@ -47,10 +47,10 @@ public class BreadthFS {
     // openlist
     LinkedList <String> openList;
 
-
+    /** declare the queue */
     Map<String,Integer> levelDepth;
 
-
+    /** declare the state history */
     Map<String,String> stateHistory;
 
     int nodes = 0; //counter for node generation
@@ -60,9 +60,14 @@ public class BreadthFS {
     int a;
 
     String currState;
+
+    /** solution found */
     boolean solution = false;//flag if solution exist or not
+
+    /** List for every state to solve the puzzle */
     List<String> movements = new ArrayList<>();
 
+    /** initiate the constructor */
     public BreadthFS(String str,String goal){
         openList = new LinkedList <String> ();
         levelDepth = new HashMap<String, Integer>();
@@ -72,6 +77,7 @@ public class BreadthFS {
         addToOpenList(str,null);//add root
     }
 
+    /** method to find the solution based on BFS */
     public String findSolution (){
 
         while (!openList.isEmpty()){
@@ -149,10 +155,12 @@ public class BreadthFS {
 
     }
 
+    /** Returns the movements */
     public List<String> getMovements(){
         return movements;
     }
 
+    /** add to the queue the new node */
     public void addToOpenList (String newState, String oldState){
         if(!levelDepth.containsKey(newState)){// check repeated state
             newValue = oldState == null ? 0 : levelDepth.get(oldState) + 1;
@@ -164,6 +172,7 @@ public class BreadthFS {
 
     }
 
+    /** print the solutions */
     public void printSolution (String currState){
         if (solution){
             System.out.println("Solution found in " +levelDepth.get(currState)+" step(s)");
