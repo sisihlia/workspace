@@ -1,9 +1,0 @@
-import org.eclipse.californium.core.CoapResource;
-import org.eclipse.californium.core.CoapServer;
-import org.eclipse.californium.core.server.resources.CoapExchange;
-
-package test;
-
-public class test {
-
-}
